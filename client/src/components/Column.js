@@ -17,7 +17,7 @@ const Column = ({ title, id, tasks = [] }) => {
   };
 
   return (
-    <div className="flex flex-col w-80 bg-column rounded-2xl shadow-column p-5 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl border border-border" style={{ height: '600px' }}>
+    <div className="flex flex-col w-96 bg-column rounded-2xl shadow-column p-5 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl border border-border" style={{ height: '600px' }}>
       <h2 className="font-semibold text-xl text-primary mb-4 tracking-wide drop-shadow-sm">{title}</h2>
       <div className="flex-1 overflow-y-auto mb-4">
         <Droppable droppableId={id}>

@@ -47,7 +47,7 @@ const Board = () => {
         setPriorityFilter={setPriorityFilter}
       />
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="flex gap-8 overflow-x-auto pb-8">
+        <div className="flex justify-center gap-16 xl:gap-24 2xl:gap-32 overflow-x-auto pb-8 px-2 md:px-8">
           {columns.map((column) => {
             const columnTasks = tasks
               .filter(task => task.columnId === column.id)
