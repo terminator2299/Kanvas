@@ -17,15 +17,15 @@ const Column = ({ title, id, tasks = [] }) => {
   };
 
   return (
-    <div className="flex flex-col w-80 bg-gray-100 rounded-lg p-4" style={{ height: '600px' }}>
-      <h2 className="font-semibold text-lg text-gray-700 mb-4">{title}</h2>
+    <div className="flex flex-col w-80 bg-column rounded-2xl shadow-column p-5 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl border border-border" style={{ height: '600px' }}>
+      <h2 className="font-semibold text-xl text-primary mb-4 tracking-wide drop-shadow-sm">{title}</h2>
       <div className="flex-1 overflow-y-auto mb-4">
         <Droppable droppableId={id}>
           {(provided, snapshot) => (
             <div
               ref={provided.innerRef}
               {...provided.droppableProps}
-              className={`min-h-[100px] rounded-lg ${snapshot.isDraggingOver ? 'bg-gray-200' : ''}`}
+              className={`min-h-[100px] rounded-lg transition-colors duration-200 ${snapshot.isDraggingOver ? 'bg-secondary/40' : ''}`}
             >
               {tasks.map((task, index) => (
                 <Task key={task.id} {...task} index={index} />
@@ -36,10 +36,10 @@ const Column = ({ title, id, tasks = [] }) => {
         </Droppable>
       </div>
       <button
-        className="p-2 bg-primary text-white rounded-lg hover:bg-blue-600 transition-colors"
+        className="p-2 bg-primary text-white rounded-lg font-semibold shadow-card hover:bg-accent hover:scale-105 transition-all duration-200"
         onClick={handleAddTask}
       >
-        Add Task
+        + Add Task
       </button>
     </div>
   );

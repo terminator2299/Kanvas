@@ -31,7 +31,7 @@ const Board = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 md:p-8">
       <div className="text-center mb-8">
         <h1 className="text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
           KANVAS
@@ -47,7 +47,7 @@ const Board = () => {
         setPriorityFilter={setPriorityFilter}
       />
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="flex gap-4 overflow-x-auto">
+        <div className="flex gap-8 overflow-x-auto pb-8">
           {columns.map((column) => {
             const columnTasks = tasks
               .filter(task => task.columnId === column.id)
