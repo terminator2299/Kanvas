@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const today = () => new Date().toISOString().split('T')[0];
+
 const initialState = {
   tasks: [
     {

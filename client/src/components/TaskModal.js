@@ -64,6 +64,19 @@ const TaskModal = ({ task, onClose }) => {
               <option value="high">High</option>
             </select>
           </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Due Date
+            </label>
+            <input
+              type="date"
+              value={editedTask.dueDate || ''}
+              onChange={(e) =>
+                setEditedTask({ ...editedTask, dueDate: e.target.value })
+              }
+              className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+            />
+          </div>
           <div className="flex justify-between">
             <button
               type="button"

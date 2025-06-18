@@ -17,26 +17,26 @@ const Column = ({ title, id, tasks = [] }) => {
   };
 
   return (
-    <div className="flex flex-col w-80 bg-gray-100 rounded-lg p-4">
+    <div className="flex flex-col w-80 bg-gray-100 rounded-lg p-4" style={{ height: '600px' }}>
       <h2 className="font-semibold text-lg text-gray-700 mb-4">{title}</h2>
-      <Droppable droppableId={id}>
-        {(provided, snapshot) => (
-          <div
-            ref={provided.innerRef}
-            {...provided.droppableProps}
-            className={`flex-1 min-h-[500px] p-2 rounded-lg ${
-              snapshot.isDraggingOver ? 'bg-gray-200' : ''
-            }`}
-          >
-            {tasks.map((task, index) => (
-              <Task key={task.id} {...task} index={index} />
-            ))}
-            {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
+      <div className="flex-1 overflow-y-auto mb-4">
+        <Droppable droppableId={id}>
+          {(provided, snapshot) => (
+            <div
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+              className={`min-h-[100px] rounded-lg ${snapshot.isDraggingOver ? 'bg-gray-200' : ''}`}
+            >
+              {tasks.map((task, index) => (
+                <Task key={task.id} {...task} index={index} />
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </div>
       <button
-        className="mt-4 p-2 bg-primary text-white rounded-lg hover:bg-blue-600 transition-colors"
+        className="p-2 bg-primary text-white rounded-lg hover:bg-blue-600 transition-colors"
         onClick={handleAddTask}
       >
         Add Task

@@ -30,16 +30,16 @@ const Board = () => {
     }));
   };
 
-  const filteredTasks = tasks.filter(task => {
-    const matchesSearch = task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         task.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesPriority = priorityFilter === 'all' || task.priority === priorityFilter;
-    return matchesSearch && matchesPriority;
-  });
-
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold text-gray-800 mb-4">Kanban Board</h1>
+      <div className="text-center mb-8">
+        <h1 className="text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+          KANVAS
+        </h1>
+        <p className="text-gray-600 text-lg font-medium">
+          Organize • Collaborate • Achieve
+        </p>
+      </div>
       <SearchBar
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
@@ -49,7 +49,14 @@ const Board = () => {
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="flex gap-4 overflow-x-auto">
           {columns.map((column) => {
-            const columnTasks = filteredTasks.filter(task => task.columnId === column.id);
+            const columnTasks = tasks
+              .filter(task => task.columnId === column.id)
+              .filter(task => {
+                const matchesSearch = task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                  task.description.toLowerCase().includes(searchTerm.toLowerCase());
+                const matchesPriority = priorityFilter === 'all' || task.priority === priorityFilter;
+                return matchesSearch && matchesPriority;
+              });
             return (
               <Column
                 key={column.id}
