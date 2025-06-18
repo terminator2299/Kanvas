@@ -2,6 +2,16 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { updateTask, deleteTask } from '../store/tasksSlice';
 
+const LABEL_OPTIONS = [
+  { name: 'Bug', color: 'bg-red-200 text-red-800' },
+  { name: 'Feature', color: 'bg-blue-200 text-blue-800' },
+  { name: 'Improvement', color: 'bg-yellow-200 text-yellow-800' },
+  { name: 'Urgent', color: 'bg-pink-200 text-pink-800' },
+  { name: 'Idea', color: 'bg-purple-200 text-purple-800' },
+  { name: 'Research', color: 'bg-green-200 text-green-800' },
+  { name: 'Personal', color: 'bg-gray-200 text-gray-800' },
+];
+
 const TaskModal = ({ task, onClose }) => {
   const dispatch = useDispatch();
   const [editedTask, setEditedTask] = React.useState(task);
@@ -15,6 +25,18 @@ const TaskModal = ({ task, onClose }) => {
   const handleDelete = () => {
     dispatch(deleteTask(task.id));
     onClose();
+  };
+
+  const toggleLabel = (label) => {
+    setEditedTask((prev) => {
+      const hasLabel = prev.labels?.includes(label);
+      return {
+        ...prev,
+        labels: hasLabel
+          ? prev.labels.filter((l) => l !== label)
+          : [...(prev.labels || []), label],
+      };
+    });
   };
 
   return (
@@ -76,6 +98,30 @@ const TaskModal = ({ task, onClose }) => {
               }
               className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
             />
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Labels
+            </label>
+            <div className="flex flex-wrap gap-2">
+              {LABEL_OPTIONS.map((label) => {
+                const isActive = editedTask.labels?.includes(label.name);
+                return (
+                  <button
+                    type="button"
+                    key={label.name}
+                    onClick={() => toggleLabel(label.name)}
+                    className={`px-2 py-1 rounded text-xs font-semibold border transition-colors focus:outline-none focus:ring-2 focus:ring-primary ${
+                      isActive
+                        ? label.color + ' border-transparent shadow'
+                        : 'bg-white border-gray-300 text-gray-600 hover:bg-gray-100'
+                    }`}
+                  >
+                    {label.name}
+                  </button>
+                );
+              })}
+            </div>
           </div>
           <div className="flex justify-between">
             <button

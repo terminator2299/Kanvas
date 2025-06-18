@@ -10,6 +10,7 @@ const initialState = {
       description: 'Set up the development environment and install dependencies',
       priority: 'high',
       columnId: 'todo',
+      labels: [],
       createdAt: new Date().toISOString(),
     },
     {
@@ -18,6 +19,7 @@ const initialState = {
       description: 'Create the database schema for the application',
       priority: 'medium',
       columnId: 'in-progress',
+      labels: [],
       createdAt: new Date().toISOString(),
     },
     {
@@ -26,6 +28,7 @@ const initialState = {
       description: 'Document the API endpoints and usage',
       priority: 'low',
       columnId: 'done',
+      labels: [],
       createdAt: new Date().toISOString(),
     },
   ],
@@ -40,6 +43,7 @@ export const tasksSlice = createSlice({
     addTask: (state, action) => {
       state.tasks.push({
         id: Date.now().toString(),
+        labels: action.payload.labels || [],
         ...action.payload,
         createdAt: new Date().toISOString(),
       });
