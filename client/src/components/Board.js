@@ -33,11 +33,11 @@ const Board = () => {
   return (
     <div className="p-4 md:p-8">
       <div className="text-center mb-8">
-        <h1 className="text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
-          KANVAS
+        <h1 className="text-6xl font-extrabold font-sans leading-[1.1] pb-2 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2" style={{ fontFamily: 'Inter, Nunito, ui-sans-serif, system-ui, sans-serif' }}>
+          Planify
         </h1>
         <p className="text-gray-600 text-lg font-medium">
-          Organize • Collaborate • Achieve
+          Plan. Track. Achieve.
         </p>
       </div>
       <SearchBar

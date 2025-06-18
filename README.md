@@ -1,8 +1,8 @@
-# Kanvas - Modern Kanban Board Application
+# Planify - Modern Kanban Board Application
 
 A modern, responsive Kanban board application built with React, Redux, and Tailwind CSS. This project provides a clean and intuitive interface for managing tasks and projects using the Kanban methodology.
 
-![Kanban Board](https://github.com/terminator2299/Kanvas/blob/main/client/public/logo512.png)
+![Planify Board](https://github.com/terminator2299/Kanvas/blob/main/client/public/logo512.png)
 
 ## Features
 
@@ -67,7 +67,7 @@ A modern, responsive Kanban board application built with React, Redux, and Tailw
 ## Project Structure
 
 ```
-Kanvas/
+Planify/
 ├── client/                 # Frontend React application
 │   ├── public/            # Static files
 │   ├── src/              # Source files
@@ -123,6 +123,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-Bhavya Khandelwal - [@terminator2299](https://github.com/terminator2299)
+Bhavya Khandelwal - [@swordbattle3549](https://github.com/swordbattle3549)
 
 Project Link: [https://github.com/terminator2299/Kanvas](https://github.com/terminator2299/Kanvas)
