@@ -123,6 +123,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-Bhavya Khandelwal - [@swordbattle3549](https://github.com/swordbattle3549)
+Bhavya Khandelwal - [@terminator2299](https://github.com/terminator2299)
 
 Project Link: [https://github.com/terminator2299/Kanvas](https://github.com/terminator2299/Kanvas)
