@@ -4,9 +4,12 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import Column from './Column';
 import SearchBar from './SearchBar';
 import { moveTask } from '../store/tasksSlice';
+import { logout } from '../store/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Board = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const columns = useSelector((state) => state.columns.columns);
   const tasks = useSelector((state) => state.tasks.tasks);
   const [searchTerm, setSearchTerm] = useState('');
@@ -30,8 +33,14 @@ const Board = () => {
     }));
   };
 
+  const handleLogout = async () => {
+    await dispatch(logout());
+    navigate('/login');
+  };
+
   return (
     <div className="p-4 md:p-8">
+      <button onClick={handleLogout} className="absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Logout</button>
       <div className="text-center mb-8">
         <h1 className="text-6xl font-extrabold font-sans leading-[1.1] pb-2 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2" style={{ fontFamily: 'Inter, Nunito, ui-sans-serif, system-ui, sans-serif' }}>
           Planify
