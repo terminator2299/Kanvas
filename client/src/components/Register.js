@@ -34,19 +34,19 @@ const Register = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
+    <div className="flex flex-col items-center justify-center min-h-screen px-2 sm:px-0">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-8 rounded shadow-md w-80"
+        className="bg-white p-6 sm:p-10 rounded-xl shadow-lg w-full max-w-xs sm:max-w-md"
       >
-        <h2 className="text-2xl font-bold mb-4">Register</h2>
-        {error && <div className="text-red-500 mb-2">{error}</div>}
+        <h2 className="text-xl sm:text-2xl font-bold mb-4 text-center">Register</h2>
+        {error && <div className="text-red-500 mb-2 text-center">{error}</div>}
         <input
           type="text"
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full mb-3 p-2 border rounded"
+          className="w-full mb-3 sm:mb-4 p-2 sm:p-3 border rounded text-base sm:text-lg"
           required
         />
         <input
@@ -54,7 +54,7 @@ const Register = () => {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full mb-3 p-2 border rounded"
+          className="w-full mb-3 sm:mb-4 p-2 sm:p-3 border rounded text-base sm:text-lg"
           required
         />
         <input
@@ -62,18 +62,18 @@ const Register = () => {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full mb-3 p-2 border rounded"
+          className="w-full mb-3 sm:mb-4 p-2 sm:p-3 border rounded text-base sm:text-lg"
           required
         />
         <button
           type="submit"
-          className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600"
+          className="w-full bg-green-500 text-white py-2 sm:py-3 rounded-lg text-base sm:text-lg font-semibold hover:bg-green-600 transition-colors"
         >
           Register
         </button>
-        <div className="mt-2 text-sm">
+        <div className="mt-3 sm:mt-4 text-sm sm:text-base text-center">
           Already have an account?{" "}
-          <a href="/login" className="text-blue-500">
+          <a href="/login" className="text-blue-500 font-semibold">
             Login
           </a>
         </div>
