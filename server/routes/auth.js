@@ -2,13 +2,21 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const passport = require('../config/passport');
 const User = require('../models/User');
+const { body, validationResult } = require('express-validator');
 const router = express.Router();
 
 // Register (email/password)
-router.post('/register', async (req, res) => {
+router.post('/register', [
+  body('email').isEmail().withMessage('A valid email is required.'),
+  body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters.'),
+  body('name').notEmpty().withMessage('Name is required.')
+], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
   try {
     const { email, password, name } = req.body;
-    if (!email || !password) return res.status(400).json({ message: 'Email and password required.' });
     const existing = await User.findOne({ email });
     if (existing) return res.status(400).json({ message: 'Email already in use.' });
     const hash = await bcrypt.hash(password, 10);
@@ -18,15 +26,22 @@ router.post('/register', async (req, res) => {
       res.json({ user: { id: user._id, email: user.email, name: user.name } });
     });
   } catch (err) {
-    res.status(500).json({ message: 'Registration failed.' });
+    res.status(500).json({ message: 'Registration failed.', error: err.message });
   }
 });
 
 // Login (email/password)
-router.post('/login', (req, res, next) => {
+router.post('/login', [
+  body('email').isEmail().withMessage('A valid email is required.'),
+  body('password').notEmpty().withMessage('Password is required.')
+], (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
   passport.authenticate('local', (err, user, info) => {
     if (err) return next(err);
-    if (!user) return res.status(400).json({ message: info.message });
+    if (!user) return res.status(400).json({ message: info ? info.message : 'Login failed.' });
     req.login(user, (err) => {
       if (err) return next(err);
       res.json({ user: { id: user._id, email: user.email, name: user.name } });
