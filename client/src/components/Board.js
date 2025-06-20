@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { DragDropContext } from 'react-beautiful-dnd';
 import Column from './Column';
 import SearchBar from './SearchBar';
-import { moveTask } from '../store/tasksSlice';
 import { logout } from '../store/authSlice';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,24 +12,6 @@ const Board = () => {
   const tasks = useSelector((state) => state.tasks.tasks);
   const [searchTerm, setSearchTerm] = useState('');
   const [priorityFilter, setPriorityFilter] = useState('all');
-
-  const onDragEnd = (result) => {
-    const { destination, source, draggableId } = result;
-
-    if (!destination) return;
-
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
-      return;
-    }
-
-    dispatch(moveTask({
-      taskId: draggableId,
-      newColumnId: destination.droppableId,
-    }));
-  };
 
   const handleLogout = async () => {
     await dispatch(logout());
@@ -55,28 +35,26 @@ const Board = () => {
         priorityFilter={priorityFilter}
         setPriorityFilter={setPriorityFilter}
       />
-      <DragDropContext onDragEnd={onDragEnd}>
-        <div className="flex justify-center gap-16 xl:gap-24 2xl:gap-32 overflow-x-auto pb-8 px-2 md:px-8">
-          {columns.map((column) => {
-            const columnTasks = tasks
-              .filter(task => task.columnId === column.id)
-              .filter(task => {
-                const matchesSearch = task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                  task.description.toLowerCase().includes(searchTerm.toLowerCase());
-                const matchesPriority = priorityFilter === 'all' || task.priority === priorityFilter;
-                return matchesSearch && matchesPriority;
-              });
-            return (
-              <Column
-                key={column.id}
-                title={column.title}
-                id={column.id}
-                tasks={columnTasks}
-              />
-            );
-          })}
-        </div>
-      </DragDropContext>
+      <div className="flex justify-center gap-16 xl:gap-24 2xl:gap-32 overflow-x-auto pb-8 px-2 md:px-8">
+        {columns.map((column) => {
+          const columnTasks = tasks
+            .filter(task => task.columnId === column.id)
+            .filter(task => {
+              const matchesSearch = task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                task.description.toLowerCase().includes(searchTerm.toLowerCase());
+              const matchesPriority = priorityFilter === 'all' || task.priority === priorityFilter;
+              return matchesSearch && matchesPriority;
+            });
+          return (
+            <Column
+              key={column.id}
+              title={column.title}
+              id={column.id}
+              tasks={columnTasks}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };
