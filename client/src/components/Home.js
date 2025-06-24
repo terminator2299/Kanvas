@@ -81,7 +81,7 @@ export default function Home() {
       {/* How to Use Modal */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 px-2">
-          <div className="bg-white dark:bg-dark-card rounded-xl p-4 sm:p-8 max-w-lg w-full shadow-lg relative">
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-4 sm:p-8 max-w-lg w-full shadow-lg relative">
             <button
               onClick={() => setShowModal(false)}
               className="absolute top-2 right-2 sm:top-3 sm:right-3 text-gray-500 hover:text-gray-800 dark:hover:text-gray-200 text-xl sm:text-2xl font-bold focus:outline-none"
@@ -89,27 +89,58 @@ export default function Home() {
             >
               &times;
             </button>
-            <h2 className="text-xl sm:text-2xl font-bold mb-4 text-center text-primary dark:text-dark-primary">How to Use Planify</h2>
-            <ol className="list-decimal list-inside space-y-2 sm:space-y-3 text-gray-700 dark:text-gray-200 text-base sm:text-lg">
-              <li>
-                <span className="font-semibold">Create a Task:</span> Click "+ Add Task" in any column. Enter the task title, description, priority, and assign it to a column.
-              </li>
-              <li>
-                <span className="font-semibold">Set a Deadline:</span> When creating or editing a task, use the "Due Date" field to set a deadline. Overdue tasks will be highlighted.
-              </li>
-              <li>
-                <span className="font-semibold">Add Labels:</span> Click on labels when editing a task to categorize it (e.g., Bug, Feature, Urgent, etc.).
-              </li>
-              <li>
-                <span className="font-semibold">Edit or Delete Tasks:</span> Click on a task to open its details. You can update information or delete the task from here.
-              </li>
-              <li>
-                <span className="font-semibold">Move Tasks:</span> (If enabled) Drag and drop tasks between columns to update their status.
-              </li>
-              <li>
-                <span className="font-semibold">Search & Filter:</span> Use the search bar and priority filter to quickly find tasks.
-              </li>
-            </ol>
+            <h2 className="text-xl sm:text-2xl font-bold mb-6 text-center text-gray-800 dark:text-white">How to Use Planify</h2>
+            <div className="space-y-6">
+              <div className="flex items-start">
+                <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 font-bold mr-3">1</span>
+                <div>
+                  <h3 className="font-semibold text-gray-800 dark:text-white mb-1">Get Started</h3>
+                  <p className="text-gray-600 dark:text-gray-300">Click the "Get Started" button on the top right of the home page to go to the login page.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 font-bold mr-3">2</span>
+                <div>
+                  <h3 className="font-semibold text-gray-800 dark:text-white mb-1">Register or Login</h3>
+                  <p className="text-gray-600 dark:text-gray-300">If you are a new user, register for an account. Otherwise, log in with your credentials.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 font-bold mr-3">3</span>
+                <div>
+                  <h3 className="font-semibold text-gray-800 dark:text-white mb-1">Create a Task</h3>
+                  <p className="text-gray-600 dark:text-gray-300">Once logged in, you'll see the task board. Click the "+ Add Task" button in any column to create a new task.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 font-bold mr-3">4</span>
+                <div>
+                  <h3 className="font-semibold text-gray-800 dark:text-white mb-1">Manage Your Tasks</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-2">Use the following features to manage your tasks:</p>
+                  <ul className="space-y-2 text-gray-600 dark:text-gray-300">
+                    <li className="flex items-center">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-400 dark:bg-blue-500 mr-2"></span>
+                      Set a due date to keep track of deadlines.
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-400 dark:bg-blue-500 mr-2"></span>
+                      Add labels like "Bug" or "Feature" to categorize tasks.
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-400 dark:bg-blue-500 mr-2"></span>
+                      Click on a task to edit its details or delete it.
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-400 dark:bg-blue-500 mr-2"></span>
+                      Use the search bar and priority filter to find tasks.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
