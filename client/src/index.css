@@ -7,3 +7,28 @@
     @apply bg-gray-50;
   }
 }
+
+@layer utilities {
+  @keyframes fade-in-out {
+    0%,100% { opacity: 0; }
+    10%,90% { opacity: 1; }
+  }
+  .animate-fade-in-out {
+    animation: fade-in-out 2.5s ease-in-out;
+  }
+  @keyframes slide-fade-in-out {
+    0%,100% { opacity: 0; transform: translateY(30px) scale(0.95); }
+    10%,90% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .animate-slide-fade-in-out {
+    animation: slide-fade-in-out 4s cubic-bezier(0.4,0,0.2,1);
+  }
+  @keyframes gradient-move {
+    0%,100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  .bg-animated-gradient {
+    background-size: 200% 200%;
+    animation: gradient-move 4s ease-in-out infinite;
+  }
+}
