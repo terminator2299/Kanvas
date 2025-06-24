@@ -144,6 +144,11 @@ export default function Home() {
           </div>
         </div>
       )}
+      <footer className="w-full mt-auto px-4 sm:px-6 py-4">
+        <p className="text-left text-sm text-gray-600 dark:text-gray-400">
+          © 2025 Planify. All Rights Reserved.
+        </p>
+      </footer>
     </div>
   );
 }
