@@ -40,6 +40,23 @@ export default function Home() {
 {/* Header */}
       <header className="flex flex-col sm:flex-row items-center sm:items-center justify-between px-3 sm:px-6 py-4 sm:py-6 gap-4 sm:gap-0">
         <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-between sm:justify-start">
+          {/* Calendar SVG Logo */}
+          <svg width="36" height="36" viewBox="0 0 48 48" fill="none" className="shrink-0">
+            <rect x="4" y="8" width="40" height="32" rx="8" fill="url(#calendar-gradient)" />
+            <rect x="4" y="16" width="40" height="24" rx="6" fill="#fff" fillOpacity="0.9" />
+            <rect x="12" y="24" width="8" height="8" rx="2" fill="#6366F1" />
+            <rect x="28" y="24" width="8" height="8" rx="2" fill="#a78bfa" />
+            <rect x="12" y="34" width="8" height="4" rx="2" fill="#6366F1" fillOpacity="0.7" />
+            <rect x="28" y="34" width="8" height="4" rx="2" fill="#a78bfa" fillOpacity="0.7" />
+            <rect x="14" y="10" width="4" height="8" rx="2" fill="#6366F1" />
+            <rect x="30" y="10" width="4" height="8" rx="2" fill="#a78bfa" />
+            <defs>
+              <linearGradient id="calendar-gradient" x1="4" y1="8" x2="44" y2="40" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#6366F1"/>
+                <stop offset="1" stopColor="#A78BFA"/>
+              </linearGradient>
+            </defs>
+          </svg>
           <span className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent drop-shadow-lg tracking-wide" style={{ fontFamily: 'Inter, Nunito, ui-sans-serif, system-ui, sans-serif' }}>Planify</span>
           <button
             onClick={() => setShowModal(true)}
