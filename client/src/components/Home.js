@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 
@@ -10,78 +9,59 @@ const taglines = [
   'Boost your productivity!',
 ];
 
+const features = [
+  {
+    name: 'Task Management',
+    icon: (
+      <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2l4 -4" /><rect width="20" height="14" x="2" y="5" rx="2" /></svg>
+    ),
+    description: 'Create, edit, and organize your tasks with ease. Stay on top of your work and deadlines.'
+  },
+  {
+    name: 'Custom Labels',
+    icon: (
+      <svg className="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M7 7h.01M7 11h.01M7 15h.01M11 7h2M11 11h2M11 15h2M15 7h2M15 11h2M15 15h2" /></svg>
+    ),
+    description: 'Categorize your tasks with custom labels for better organization and filtering.'
+  },
+  {
+    name: 'Notifications',
+    icon: (
+      <svg className="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0 1 18 14.158V11a6.002 6.002 0 0 0-4-5.659V5a2 2 0 1 0-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 1 1-6 0v-1m6 0H9" /></svg>
+    ),
+    description: 'Stay updated with real-time notifications for important events and deadlines.'
+  },
+];
+
 export default function Home() {
   const [current, setCurrent] = React.useState(0);
-  const [showModal, setShowModal] = React.useState(false);
   const [displayed, setDisplayed] = React.useState('');
   const [loginModalOpen, setLoginModalOpen] = React.useState(false);
   const [registerModalOpen, setRegisterModalOpen] = React.useState(false);
+  const [showModal, setShowModal] = React.useState(false);
 
-  // Typewriter effect
+  // Typewriter effect for animated tagline
   React.useEffect(() => {
     let timeout;
     if (displayed.length < taglines[current].length) {
       timeout = setTimeout(() => {
         setDisplayed(taglines[current].slice(0, displayed.length + 1));
-      }, 40); // typing speed
+      }, 40);
     } else {
-      // Wait until the next tagline
       timeout = setTimeout(() => {
         setDisplayed('');
         setCurrent((prev) => (prev + 1) % taglines.length);
-      }, 4000 - taglines[current].length * 40); // 4s minus typing time
+      }, 4000 - taglines[current].length * 40);
     }
     return () => clearTimeout(timeout);
-    // eslint-disable-next-line
   }, [displayed, current]);
 
   React.useEffect(() => {
     setDisplayed('');
   }, [current]);
 
-  React.useEffect(() => {
-    const image1 = document.getElementById('bg-image-1');
-    const image2 = document.getElementById('bg-image-2');
-
-    if (image1 && image2) {
-      // Start with one image visible and the other hidden
-      image1.style.opacity = '0.15';
-      image2.style.opacity = '0';
-
-      const toggleImages = () => {
-        // Cross-fade between images
-        if (image1.style.opacity === '0.15') {
-          image1.style.opacity = '0';
-          image2.style.opacity = '0.15';
-        } else {
-          image1.style.opacity = '0.15';
-          image2.style.opacity = '0';
-        }
-      };
-
-      const intervalId = setInterval(toggleImages, 4000); // Toggle every 4 seconds
-
-      // Cleanup on unmount
-      return () => clearInterval(intervalId);
-    }
-  }, []);
-
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-red via-blue-50 to-teal-50 transition-colors duration-500 overflow-hidden relative">
-      {/* Dynamic background images */}
-      <img
-        src="https://static.vecteezy.com/system/resources/previews/024/183/503/original/hands-holding-a-pen-ready-to-write-in-an-office-planner-during-a-productive-work-session-office-planner-business-organizer-hands-holding-pens-writing-notepad-pencil-isolated-on-transparent-png.png"
-        alt="Planning"
-        className="absolute top-1/3 left-16 w-80 h-80 opacity-0 transition-opacity duration-1000 transform -rotate-12"
-        id="bg-image-1"
-      />
-      <img
-        src="https://static.vecteezy.com/system/resources/previews/010/854/227/original/3d-rendering-time-management-png.png"
-        alt="Organization"
-        className="absolute bottom-1/3 right-16 w-80 h-80 opacity-0 transition-opacity duration-1000 transform rotate-12"
-        id="bg-image-2"
-      />
-
       {/* Header */}
       <header className="flex flex-col sm:flex-row items-center sm:items-center justify-between px-3 sm:px-6 py-4 sm:py-6 gap-4 sm:gap-0 z-10">
         <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-between sm:justify-start">
@@ -125,13 +105,34 @@ export default function Home() {
           </button>
         </div>
       </header>
-      {/* Centered Tagline */}
-      <main className="flex-1 flex flex-col items-center justify-center px-2">
-        <div className="relative h-16 sm:h-24 flex items-center">
-          <span className="text-2xl sm:text-4xl md:text-5xl font-extrabold animate-slide-fade-in-out bg-animated-gradient bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent text-center drop-shadow-lg px-2 sm:px-4 whitespace-pre" key={current}>
+      <main className="flex-1 flex flex-col items-center justify-center px-2 w-full">
+        {/* Animated Tagline at Top (with mobile slide-in/out effect) */}
+        <div className="relative h-16 sm:h-24 flex items-center justify-center w-full mt-12 mb-16 overflow-x-hidden">
+          <span
+            className={
+              `text-2xl sm:text-4xl md:text-5xl font-extrabold bg-animated-gradient bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent text-center drop-shadow-lg px-2 sm:px-4 whitespace-pre ` +
+              `mobile-animated-tagline`
+            }
+            key={current}
+          >
             {displayed}
             <span className="inline-block w-2 h-7 align-middle bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-pulse ml-1" style={{verticalAlign:'-0.2em'}}></span>
           </span>
+        </div>
+        {/* Features Responsive Boxes Section */}
+        <div className="w-full flex flex-col sm:flex-row gap-6 sm:gap-8 mt-2 mb-20 overflow-x-visible sm:overflow-x-auto px-2 py-4 justify-center items-center">
+          {features.map((feature, idx) => (
+            <div
+              key={feature.name}
+              className="w-full sm:min-w-[260px] sm:max-w-xs bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center border border-gray-100 transition-transform duration-200 hover:-translate-y-1 hover:shadow-xl"
+              data-aos="fade-up"
+              data-aos-delay={idx * 100}
+            >
+              <div className="mb-3">{feature.icon}</div>
+              <h3 className="text-lg font-bold mb-2 text-gray-800">{feature.name}</h3>
+              <p className="text-gray-600 text-base">{feature.description}</p>
+            </div>
+          ))}
         </div>
       </main>
       {/* How to Use Modal */}
