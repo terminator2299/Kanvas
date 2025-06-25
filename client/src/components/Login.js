@@ -23,7 +23,7 @@ const Login = () => {
           data.message || (data.errors && data.errors[0].msg) || "Login failed"
         );
       } else {
-        navigate("/");
+        navigate("/board");
       }
     } catch (err) {
       setError("Network error");
